@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FreelanceTrack.Models
 {
-    public class EmployeeDatabaseContext : DbContext
+    public class FreelancersDatabaseContext : DbContext
 {
     public DbSet<Freelancer> Freelancer { get; set; }
     public DbSet<Assignment> Assignment { get; set; }
@@ -15,9 +15,7 @@ namespace FreelanceTrack.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //this incorporates the tables you need
-            //can configure more than this, could do anything you want
-
+          
             modelBuilder.Entity<Freelancer>()
                 .ToTable("Freelancer")
                 .HasKey(c => c.FreelancerId);
