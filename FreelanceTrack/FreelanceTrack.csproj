@@ -176,13 +176,15 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assignment.cs" />
-    <Compile Include="Models\EmployeeDatabaseContext.cs" />
+    <Compile Include="Models\FreelancersDatabaseContext.cs" />
     <Compile Include="Models\Freelancer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\FreelanceDetailsListVM.cs" />
+    <Compile Include="ViewModels\FreelancerDetailsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\FreelanceData.mdf" />

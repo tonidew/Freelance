@@ -25,7 +25,7 @@ namespace FreelanceTrack.ViewModels
         public int InvoiceId { get; set; }
         public DateTime DatePaid { get; set; }
         public float AmountPaid { get; set; }
-      
+        public List<FreelancerDetailsVM> Freelancers { get; set; }
 
     }
 }

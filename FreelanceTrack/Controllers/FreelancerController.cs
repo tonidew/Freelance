@@ -1,4 +1,5 @@
 ﻿using FreelanceTrack.Models;
+using FreelanceTrack.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,33 +14,42 @@ namespace FreelanceTrack.Controllers
         public ActionResult Index()
         {
             FreelancersDatabaseContext _myFreelancers = new FreelancersDatabaseContext();
-            return View();
-        }
-    }
-}
 
-----
+            var freelancerDetails = (from freelancer in _myFreelancers.Freelancer
+                                     join assignment in _myFreelancers.Assignment
+                                     on freelancer.FreelancerId equals assignment.FreelancerId
+                                     orderby assignment.AssignmentName
+                                     select new FreelancerDetailsVM
+                                     {
+                                         FirstName = freelancer.FirstName,
+                                         LastName = freelancer.LastName,
+                                         State = freelancer.State,
+                                         Address = freelancer.Address,
+                                         Phone = freelancer.Phone,
+                                         Email = freelancer.Email,
+                                         AssignmentName = assignment.AssignmentName,
+                                         Description = assignment.Description,
+                                         DateAssigned = assignment.DateAssigned,
+                                         DateDue = assignment.DateDue,
+                                         PublicationDate = assignment.PublicationDate,
+                                         Completed = assignment.Completed,
+                                         URL = assignment.URL
+                                     }).ToList();
 
-
-        
-
-            //LINQ to bring in Department Table
-            var FreelancerDetails = (from freelancer in _myFreelancers.LastName
-                                   join dept in _myEmployeeContext.Department
-                                   on emp.DepartmentId equals dept.DepartmentId
-                                   orderby dept.DepartmentName
-                                   select new EmployeeDetailsViewModel
-                                   {
-                                       Name = emp.Name,
-                                       DepartmentName = dept.DepartmentName
-                                   }).ToList();
-
-
-            EmployeeDepartmentDetailsViewModel employeeDepartmentDetails = new EmployeeDepartmentDetailsViewModel
+            FreelancerDetailsVM freelancersDetails = new FreelancerDetailsVM
             {
-                Employees = employeeDetails
+                Freelancers = freelancerDetails
             };
-            return View(employeeDepartmentDetails);
+            return View(freelancerDetails);
+
         }
     }
 }
+
+
+
+
+
+
+
+            
