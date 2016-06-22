@@ -1,0 +1,55 @@
+﻿@model FreelanceTrack.ViewModels.FreelanceDetailsListVM
+
+@*@{
+        ViewBag.Title = "Index";
+    }*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Freelance Tracker</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Story</th>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Assigned</th>
+            <th>Due</th>
+            <th>Publishes</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>State</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model.Freelancers)
+    {
+        
+        <tr>
+            
+            <td>@Html.DisplayFor(ModelItem => item.AssignmentName)</td>
+            <td>@Html.DisplayFor(ModelItem => item.AssignmentId)</td>
+            <td>@Html.DisplayFor(ModelItem => item.Description)</td>
+            <td>@Html.DisplayFor(ModelItem => item.DateAssigned)</td>
+            <td>@Html.DisplayFor(ModelItem => item.DateDue)</td>
+            <td>@Html.DisplayFor(ModelItem => item.PublicationDate)</td>
+            <td>@Html.DisplayFor(ModelItem => item.FirstName)</td>
+            <td>@Html.DisplayFor(ModelItem => item.LastName)</td>
+            <td>@Html.DisplayFor(ModelItem => item.State)</td>
+            <td>@Html.DisplayFor(ModelItem => item.Address)</td>
+            <td>@Html.DisplayFor(ModelItem => item.Phone)</td>
+            <td>@Html.DisplayFor(ModelItem => item.Email)</td>
+
+        </tr>
+    }
+</table>
+
+

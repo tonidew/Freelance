@@ -15,32 +15,35 @@ namespace FreelanceTrack.Controllers
         {
             FreelancersDatabaseContext _myFreelancers = new FreelancersDatabaseContext();
 
+
+
             var freelancerDetails = (from freelancer in _myFreelancers.Freelancer
                                      join assignment in _myFreelancers.Assignment
                                      on freelancer.FreelancerId equals assignment.FreelancerId
                                      orderby assignment.AssignmentName
                                      select new FreelancerDetailsVM
                                      {
-                                         FirstName = freelancer.FirstName,
-                                         LastName = freelancer.LastName,
-                                         State = freelancer.State,
-                                         Address = freelancer.Address,
-                                         Phone = freelancer.Phone,
-                                         Email = freelancer.Email,
+                                       
                                          AssignmentName = assignment.AssignmentName,
+                                         AssignmentId = assignment.AssignmentId,
                                          Description = assignment.Description,
                                          DateAssigned = assignment.DateAssigned,
                                          DateDue = assignment.DateDue,
                                          PublicationDate = assignment.PublicationDate,
-                                         Completed = assignment.Completed,
-                                         URL = assignment.URL
+                                         FirstName = freelancer.FirstName,
+                                         LastName = freelancer.LastName,
+                                         State = freelancer.State,    
+                                         Address = freelancer.Address,
+                                         Phone = freelancer.Phone,
+                                         Email = freelancer.Email
+                                         //
                                      }).ToList();
 
-            FreelancerDetailsVM freelancersDetails = new FreelancerDetailsVM
+            FreelanceDetailsListVM ListofFreelancerDetails = new FreelanceDetailsListVM
             {
                 Freelancers = freelancerDetails
             };
-            return View(freelancerDetails);
+            return View(ListofFreelancerDetails);
 
         }
     }
